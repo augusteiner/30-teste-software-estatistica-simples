@@ -44,7 +44,10 @@ public class TestEstatisticas {
     @Test
     public void testaTipoVetorEhArrayInt() {
 
-        assertNotNull(estatisticas(new Integer[] { 1 }));
+        thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("vetor vazio");
+
+        assertNotNull(estatisticas(new Integer[] {}));
     }
 
     /**
@@ -54,6 +57,8 @@ public class TestEstatisticas {
     public void testaTipoVetorNaoEhArrayInt() {
 
         thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("tipo inválido de vetor");
+
         estatisticas(new String[] { });
     }
 
@@ -63,7 +68,7 @@ public class TestEstatisticas {
     @Test
     public void testaTamanhoVetorEhMaiorQueZero() {
 
-        assertNotNull(estatisticas(new Integer[] { 1, 2 }));
+        assertNotNull(estatisticas(new Integer[] { 1 }));
     }
 
     /**
@@ -73,11 +78,13 @@ public class TestEstatisticas {
     public void testaTamanhoVetorEhMenorOuIgualAZero() {
 
         thrown.expect(IllegalArgumentException.class);
+        thrown.expectMessage("vetor vazio");
+
         estatisticas(new Integer[] { });
     }
 
     /**
-     * XXX: 5º Caso de Teste :: EXTRA (teste de um caso específico)
+     * XXX: 5º Caso de Teste :: EXTRA (teste de um cenário específico)
      */
     @Test
     public void testaEstatisticasCalculadas() {

@@ -28,24 +28,23 @@ package br.edu.ifrn.teste;
  */
 public class Estatisticas {
 
-    public static Estatisticas estatisticas(Object[] _args) {
+    public static Estatisticas estatisticas(Object[] _vetor) {
 
-        if (!_args.getClass().equals(Integer[].class))
-            throw new IllegalArgumentException("Tipo deve ser Int[]");
+        if (!_vetor.getClass().equals(Integer[].class))
+            throw new IllegalArgumentException("tipo inválido de vetor");
 
-        if (_args.length <= 0)
-            throw new IllegalArgumentException(
-                "Array deve ter tamanho maior que zero");
+        if (_vetor.length <= 0)
+            throw new IllegalArgumentException("vetor vazio");
 
-        Integer[] args = (Integer[]) _args;
+        Integer[] vetor = (Integer[]) _vetor;
         int min, max;
         double avg;
 
         avg = 0;
-        min = args[0];
-        max = args[0];
+        min = vetor[0];
+        max = vetor[0];
 
-        for (Integer i : args) {
+        for (Integer i : vetor) {
 
             if (i < min)
                 min = i;
@@ -57,7 +56,7 @@ public class Estatisticas {
 
         }
 
-        return new Estatisticas(min, max, avg / args.length, args.length);
+        return new Estatisticas(min, max, avg / vetor.length, vetor.length);
 
     }
 
